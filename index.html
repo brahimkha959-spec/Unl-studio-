@@ -1,99 +1,274 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تنقل بين مناطق</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* تصميم الأزرار */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #333;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    z-index: 1000;
-}
-
-nav button {
-    padding: 10px 20px;
-    border: none;
-    background: #555;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-nav button:hover {
-    background: #ff6600;
-}
-
-/* المناطق */
-.area {
-    display: none; /* كل المناطق مخفية افتراضياً */
-    padding: 50px;
-    height: 500px; /* ارتفاع لكل "صفحة" */
-    color: white;
-    transition: all 0.5s;
-}
-
-#area1 { background: #3498db; display: block; } /* المنطقة 1 تظهر أولاً */
-#area2 { background: #2ecc71; }
-#area3 { background: #9b59b6; }
-</style>
+<title>UNL — لغة برمجة جديدة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
+<style>
+</style>
 <body>
 
-<!-- أزرار التنقل -->
-<nav>
-  <button onclick="showArea('area1')">منطقة 1</button>
-  <button onclick="showArea('area2')">منطقة 2</button>
-  <button onclick="showArea('area3')">منطقة 3</button>
-</nav>
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <div class="logo-mark">UN</div>
+      <span data-i18n="brand">UNL</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#domains" data-i18n="nav_domains">المجالات</a>
+      <a href="#examples" data-i18n="nav_examples">أمثلة الكود</a>
+      <a href="#compiler" data-i18n="nav_compiler">بنية المترجم</a>
+      <a href="#book" data-i18n="nav_book">الكتاب</a>
+      <a href="#video" data-i18n="nav_video">العرض التقديمي</a>
+      <a href="#download" data-i18n="nav_download">تحميل المحرر</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" id="themeToggle" title="Theme" aria-label="toggle theme">
+        <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.5A8.5 8.5 0 1 1 11.5 3 6.5 6.5 0 0 0 21 12.5Z"/></svg>
+      </button>
+      <button class="lang-btn" id="langToggle">EN</button>
+    </div>
+  </div>
+</header>
 
-<!-- المناطق -->
-<div id="area1" class="area">
-  <h2>منطقة 1</h2>
-  <p>هذا محتوى منطقة 1</p>
-</div>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">UNL · v1.0</span></span>
+        <h1><span data-i18n="hero_title_1">UNL</span> <span class="hl" data-i18n="hero_title_2">لغة المستقبل</span></h1>
+        <p class="sub" data-i18n="hero_sub">لغة واحدة للواجهة والخادم والذكاء الاصطناعي والتطبيقات، بصياغة بسيطة وسريعة.</p>
+        <div class="cta-row">
+          <a href="#download" class="btn btn-primary" data-i18n="cta_download">تحميل المحرر</a>
+          <a href="#video" class="btn btn-ghost" data-i18n="cta_video">مشاهدة العرض</a>
+        </div>
+        <div class="credit">
+          <span class="avatar">KI</span>
+          <span data-i18n="hero_credit">مشروع فردي من صنع <b>خالف إبراهيم خليل</b>، بعمر 14 عامًا — بُني خلال 3 أشهر</span>
+        </div>
+      </div>
 
-<div id="area2" class="area">
-  <h2>منطقة 2</h2>
-  <p>هذا محتوى منطقة 2</p>
-</div>
+      <div class="term">
+        <div class="term-bar">
+          <span class="term-dot" style="background:#FF5F57"></span>
+          <span class="term-dot" style="background:#FEBC2E"></span>
+          <span class="term-dot" style="background:#28C840"></span>
+          <span class="term-title">main.unl</span>
+        </div>
+        <div class="term-body" id="termBody"></div>
+      </div>
+    </div>
+  </section>
 
-<div id="area3" class="area">
-  <h2>منطقة 3</h2>
-  <p>هذا محتوى منطقة 3</p>
-</div>
+  <section id="about">
+    <div class="wrap bio-grid">
+      <div class="bio-card">
+        <div class="bio-avatar">KI</div>
+        <h3>Khalf Ibrahim Khalil</h3>
+        <div class="bio-role" data-i18n="bio_role">صانع اللغة · مشروع فردي</div>
+        <p class="i18n-ar">صمّمها خالف إبراهيم خليل بمفرده، بعمر 14 عامًا، خلال 3 أشهر — لغة واحدة تغطي أغلب مجالات البرمجة الحديثة.</p>
+        <p class="i18n-en">Designed solo by Khalf Ibrahim Khalil, age 14, over 3 months — one language covering most modern programming domains.</p>
+        <div class="bio-stats">
+          <div class="bio-stat"><b>1</b><span data-i18n="stat_solo">مطوّر واحد</span></div>
+          <div class="bio-stat"><b>14</b><span data-i18n="stat_age">سنة</span></div>
+          <div class="bio-stat"><b>3</b><span data-i18n="stat_months">أشهر عمل</span></div>
+          <div class="bio-stat"><b>8</b><span data-i18n="stat_modules">وسيطًا</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="kicker" data-i18n="about_kicker">القصة</div>
+        <h2 data-i18n="about_title">لماذا لغة واحدة لكل شيء؟</h2>
+        <p class="sub" style="margin-bottom:20px;" data-i18n="about_sub">فكرة UNL بسيطة: بدل الانتقال بين لغات مختلفة للواجهة، والخادم، والذكاء الاصطناعي، والأمن السيبراني — تكتب كل شيء بنفس الصياغة، وتنادي كل مجال عبر وسيط خاص به يبدأ بـ <span class="mono">un.</span></p>
+        <div class="chip-row" id="chipRow"></div>
+      </div>
+    </div>
+  </section>
 
-<script>
-function showArea(id) {
-    // جميع المناطق
-    const areas = document.querySelectorAll('.area');
-    
-    areas.forEach(area => {
-        area.style.display = 'none'; // اخفاء جميع المناطق
-    });
+  <section id="domains">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="dom_kicker">مجالات الاستخدام</div>
+        <h2 data-i18n="dom_title">وسيط لكل مجال</h2>
+        <p data-i18n="dom_sub">كل مجال في UNL له مساحة اسم خاصة به، تُستدعى ببادئة un.</p>
+      </div>
+      <div class="grid-4" id="domainGrid"></div>
+    </div>
+  </section>
 
-    // إظهار المنطقة المطلوبة
-    document.getElementById(id).style.display = 'block';
-    
-    // تمرير الصفحة لأعلى عند تغيير المنطقة
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
+  <section id="syntax">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="syn_kicker">قواعد أساسية</div>
+        <h2 data-i18n="syn_title">صياغة خفيفة، مصممة للقراءة</h2>
+        <p data-i18n="syn_sub">أساسيات اللغة قبل الدخول إلى الأمثلة.</p>
+      </div>
+      <div class="syntax-grid" id="syntaxGrid"></div>
+    </div>
+  </section>
 
+  <section id="examples">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="ex_kicker">جرّب اللغة</div>
+        <h2 data-i18n="ex_title">أمثلة حقيقية من كود UNL</h2>
+        <p data-i18n="ex_sub">من الطباعة البسيطة إلى الذكاء الاصطناعي والأمن السيبراني وإنترنت الأشياء.</p>
+      </div>
+      <div class="ex-shell">
+        <div class="ex-tabs" id="exTabs"></div>
+        <div class="ex-panels" id="exPanels"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compiler">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="comp_kicker">من الداخل</div>
+        <h2 data-i18n="comp_title">من مُفسِّر إلى مترجم حقيقي</h2>
+        <p data-i18n="comp_sub">اليوم UNL أقرب إلى مُفسِّر (Interpreter). خارطة الطريق تتجه نحو بنية مترجم كاملة.</p>
+      </div>
+
+      <div class="status-row">
+        <div class="status-pill">
+          <span class="sdot" style="background:var(--accent-2)"></span>
+          <div><b data-i18n="comp_now_t">الوضع الحالي</b><span data-i18n="comp_now_d">مُفسِّر (Interpreter) — ينفّذ الكود مباشرة سطرًا بسطر</span></div>
+        </div>
+        <div class="status-pill">
+          <span class="sdot" style="background:var(--accent)"></span>
+          <div><b data-i18n="comp_next_t">الهدف القادم</b><span data-i18n="comp_next_d">مترجم حقيقي (Compiler) عبر LLVM إلى كود آلة</span></div>
+        </div>
+      </div>
+
+      <div class="pipeline" id="pipelineRow"></div>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 21h10M9 17v4M15 17v4"/></svg>
+          </div>
+          <h4 data-i18n="mode1_t">تشغيل Console</h4>
+          <p data-i18n="mode1_d">تنفيذ نصي مباشر في الطرفية، مناسب للسكربتات والخوادم والذكاء الاصطناعي والأمن السيبراني.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18M8 8v13"/></svg>
+          </div>
+          <h4 data-i18n="mode2_t">تشغيل رسومي (GUI)</h4>
+          <p data-i18n="mode2_d">عبر وسيط un.gui يُبنى واجهة نافذة حقيقية، بمنطق قريب من طريقة HTML في رسم الصفحة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="book_kicker">مرجع اللغة</div>
+        <h2 data-i18n="book_title">كتاب UNL</h2>
+        <p data-i18n="book_sub">دليل القواعد والوسطاء، للقراءة هنا أو للتحميل.</p>
+      </div>
+      <div class="book-card">
+        <iframe class="book-frame" src="book/unl-book.pdf" title="UNL Book"></iframe>
+      </div>
+      <p class="book-note" data-i18n="book_note">ضع ملف الكتاب باسم unl-book.pdf داخل مجلد book بجانب index.html.</p>
+      <div class="cta-row" style="margin-top:16px;">
+        <a href="book/unl-book.pdf" class="btn btn-primary" download data-i18n="book_download">تحميل الكتاب</a>
+        <a href="book/unl-book.pdf" target="_blank" class="btn btn-ghost" data-i18n="book_open">فتح في تبويب جديد</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="video">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="video_kicker">شاهد</div>
+        <h2 data-i18n="video_title">عرض تقديمي سريع للغة UNL</h2>
+        <p data-i18n="video_sub">جولة قصيرة على الفكرة والمحرر قبل التحميل.</p>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/-VN1i4dwlNk" title="UNL presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-i18n="dl_kicker">تحميل</div>
+        <h2 data-i18n="dl_title">حمّل محرر UNL لجهازك</h2>
+        <p data-i18n="dl_sub">اختر نظامك. الأزرار جاهزة للربط بملفاتك الحقيقية — راجع تعليق أعلى الكود لمعرفة أين تضعها.</p>
+      </div>
+
+      <div class="dl-grid">
+        <!-- Windows -->
+        <div class="dl-card">
+          <div class="dl-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.4v7.2H3zM11.4 4.2 21 3v8.6h-9.6zM3 12.6h7.4V19.8L3 18.7zM11.4 12.6H21V21l-9.6-1.3z"/></svg>
+          </div>
+          <h4 data-i18n="dl_win">ويندوز</h4>
+          <div class="plat-sub">.EXE</div>
+          <a class="dl-btn" href="downloads/unl-editor-windows.exe" download>
+            <span data-i18n="dl_btn">تحميل</span>
+          </a>
+        </div>
+
+        <!-- Android -->
+        <div class="dl-card">
+          <div class="dl-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 18h4"/></svg>
+          </div>
+          <h4 data-i18n="dl_android">أندرويد</h4>
+          <div class="plat-sub">.APK</div>
+          <a class="dl-btn" href="downloads/unl-editor-android.apk" download>
+            <span data-i18n="dl_btn">تحميل</span>
+          </a>
+        </div>
+
+        <!-- Linux -->
+        <div class="dl-card">
+          <div class="dl-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h.01M7 13h6M7 17h10"/></svg>
+          </div>
+          <h4 data-i18n="dl_linux">لينكس</h4>
+          <div class="plat-sub">.tar.gz</div>
+          <a class="dl-btn" href="downloads/unl-editor-linux.tar.gz" download>
+            <span data-i18n="dl_btn">تحميل</span>
+          </a>
+        </div>
+
+        <!-- iOS -->
+        <div class="dl-card">
+          <div class="dl-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.2"/><path d="M11 19h2"/></svg>
+          </div>
+          <h4 data-i18n="dl_ios">iOS</h4>
+          <div class="plat-sub">.ipa</div>
+          <a class="dl-btn" href="downloads/unl-editor-ios.ipa" download>
+            <span data-i18n="dl_btn">تحميل</span>
+          </a>
+        </div>
+      </div>
+      <p class="dl-note" data-i18n="dl_hint">ملاحظة: هذه أزرار حقيقية قابلة للنقر، لكن الملفات غير موجودة بعد — ضعها داخل مجلد downloads بجانب index.html.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo">
+      <div class="logo-mark" style="width:26px;height:26px;font-size:11px;">UN</div>
+      <span data-i18n="brand">UNL</span>
+    </div>
+    <p data-i18n="footer_text">UNL — لغة برمجة صنعها خالف إبراهيم خليل، مشروع فردي بعمر 14 عامًا.</p>
+  </div>
+</footer>
+
+<script></script>
 </body>
-  </html>
+    </html>
