@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تنقل بين مناطق</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* تصميم الأزرار */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+nav button {
+    padding: 10px 20px;
+    border: none;
+    background: #555;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav button:hover {
+    background: #ff6600;
+}
+
+/* المناطق */
+.area {
+    display: none; /* كل المناطق مخفية افتراضياً */
+    padding: 50px;
+    height: 500px; /* ارتفاع لكل "صفحة" */
+    color: white;
+    transition: all 0.5s;
+}
+
+#area1 { background: #3498db; display: block; } /* المنطقة 1 تظهر أولاً */
+#area2 { background: #2ecc71; }
+#area3 { background: #9b59b6; }
+</style>
+</head>
+<body>
+
+<!-- أزرار التنقل -->
+<nav>
+  <button onclick="showArea('area1')">منطقة 1</button>
+  <button onclick="showArea('area2')">منطقة 2</button>
+  <button onclick="showArea('area3')">منطقة 3</button>
+</nav>
+
+<!-- المناطق -->
+<div id="area1" class="area">
+  <h2>منطقة 1</h2>
+  <p>هذا محتوى منطقة 1</p>
+</div>
+
+<div id="area2" class="area">
+  <h2>منطقة 2</h2>
+  <p>هذا محتوى منطقة 2</p>
+</div>
+
+<div id="area3" class="area">
+  <h2>منطقة 3</h2>
+  <p>هذا محتوى منطقة 3</p>
+</div>
+
+<script>
+function showArea(id) {
+    // جميع المناطق
+    const areas = document.querySelectorAll('.area');
+    
+    areas.forEach(area => {
+        area.style.display = 'none'; // اخفاء جميع المناطق
+    });
+
+    // إظهار المنطقة المطلوبة
+    document.getElementById(id).style.display = 'block';
+    
+    // تمرير الصفحة لأعلى عند تغيير المنطقة
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+  </html>
