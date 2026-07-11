@@ -589,6 +589,338 @@
   </div>
 </footer>
 
-<script></script>
+<script>
+  (function(){
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const iconSun = document.getElementById('iconSun');
+  const iconMoon = document.getElementById('iconMoon');
+  const langToggle = document.getElementById('langToggle');
+
+  let theme = 'dark';
+  function applyTheme(){
+    html.setAttribute('data-theme', theme);
+    iconSun.style.display = theme === 'dark' ? 'block' : 'none';
+    iconMoon.style.display = theme === 'dark' ? 'none' : 'block';
+  }
+  themeToggle.addEventListener('click', function(){
+    theme = theme === 'dark' ? 'light' : 'dark';
+    applyTheme();
+  });
+  applyTheme();
+
+  const dict = {
+    ar: {
+      brand:'UNL',
+      nav_features:'المزايا', nav_video:'العرض التقديمي', nav_download:'تحميل المحرر',
+      eyebrow:'UNL · v1.0',
+      hero_title_1:'UNL', hero_title_2:'لغة المستقبل',
+      hero_sub:'لغة واحدة للواجهة والخادم والذكاء الاصطناعي والتطبيقات، بصياغة بسيطة وسريعة.',
+      cta_download:'تحميل المحرر', cta_video:'مشاهدة العرض',
+      feat_kicker:'لماذا UNL', feat_title:'مصممة لتعمل في كل مكان', feat_sub:'أربع أفكار أساسية تحكم تصميم اللغة والمحرر.',
+      feat1_title:'صيغة بسيطة', feat1_desc:'قواعد قليلة وقراءة شبه طبيعية، تقلل الوقت بين الفكرة وأول تشغيل ناجح.',
+      feat2_title:'تجميع مباشر', feat2_desc:'يتحول الكود إلى ملف تنفيذي أصلي لكل منصة، بلا طبقات تشغيل إضافية.',
+      feat3_title:'متعددة المنصات', feat3_desc:'مشروع واحد يُصدَّر إلى أندرويد وويندوز ولينكس و iOS من نفس الملفات.',
+      feat4_title:'مفتوحة المصدر', feat4_desc:'اللغة والمحرر مفتوحان للمجتمع، مع سجلّ حزم قابل للتوسعة.',
+      video_kicker:'شاهد', video_title:'عرض تقديمي سريع للغة UNL', video_sub:'جولة قصيرة على الفكرة والمحرر قبل التحميل.',
+      dl_kicker:'تحميل', dl_title:'حمّل محرر UNL لجهازك',
+      dl_sub:'اختر نظامك. الأزرار جاهزة للربط بملفاتك الحقيقية — راجع تعليق أعلى الكود لمعرفة أين تضعها.',
+      dl_win:'ويندوز', dl_android:'أندرويد', dl_linux:'لينكس', dl_ios:'iOS', dl_btn:'تحميل',
+      dl_hint:'ملاحظة: هذه أزرار حقيقية قابلة للنقر، لكن الملفات غير موجودة بعد — ضعها داخل مجلد downloads بجانب index.html.',
+      footer_text:'UNL — لغة برمجة صنعها خالف إبراهيم خليل، مشروع فردي بعمر 14 عامًا.',
+
+      nav_domains:'المجالات', nav_examples:'أمثلة الكود', nav_compiler:'بنية المترجم',
+      hero_credit:'مشروع فردي من صنع خالف إبراهيم خليل، بعمر 14 عامًا — بُني خلال 3 أشهر',
+
+      bio_role:'صانع اللغة · مشروع فردي',
+      stat_solo:'مطوّر واحد', stat_age:'سنة', stat_months:'أشهر عمل', stat_modules:'وسيطًا',
+      about_kicker:'القصة', about_title:'لماذا لغة واحدة لكل شيء؟',
+      about_sub:'بدل تعلّم لغة لكل مجال، تكتب كل شيء بنفس الصياغة، وتنادي كل مجال عبر وسيط يبدأ بـ un.',
+
+      nav_book:'الكتاب',
+      book_kicker:'مرجع اللغة', book_title:'كتاب UNL', book_sub:'دليل القواعد والوسطاء، للقراءة هنا أو للتحميل.',
+      book_note:'ضع ملف الكتاب باسم unl-book.pdf داخل مجلد book بجانب index.html.',
+      book_download:'تحميل الكتاب', book_open:'فتح في تبويب جديد',
+
+      dom_kicker:'مجالات الاستخدام', dom_title:'11 وسيطًا لـ 11 مجالًا',
+      dom_sub:'كل مجال في UNL له مساحة اسم خاصة به، تُستدعى ببادئة un.',
+
+      syn_kicker:'قواعد أساسية', syn_title:'صياغة خفيفة، مصممة للقراءة',
+      syn_sub:'أساسيات اللغة قبل الدخول إلى الأمثلة.',
+
+      ex_kicker:'جرّب اللغة', ex_title:'أمثلة حقيقية من كود UNL',
+      ex_sub:'من الطباعة البسيطة إلى الذكاء الاصطناعي والأمن السيبراني وإنترنت الأشياء.',
+
+      comp_kicker:'من الداخل', comp_title:'من مُفسِّر إلى مترجم حقيقي',
+      comp_sub:'اليوم UNL أقرب إلى مُفسِّر (Interpreter). خارطة الطريق تتجه نحو بنية مترجم كاملة.',
+      comp_now_t:'الوضع الحالي', comp_now_d:'مُفسِّر (Interpreter) — ينفّذ الكود مباشرة سطرًا بسطر',
+      comp_next_t:'الهدف القادم', comp_next_d:'مترجم حقيقي (Compiler) عبر LLVM إلى كود آلة',
+      mode1_t:'تشغيل Console', mode1_d:'تنفيذ نصي مباشر في الطرفية، مناسب للسكربتات والخوادم والذكاء الاصطناعي والأمن السيبراني.',
+      mode2_t:'تشغيل رسومي (GUI)', mode2_d:'عبر وسيط un.gui يُبنى واجهة نافذة حقيقية، بمنطق قريب من طريقة HTML في رسم الصفحة.'
+    },
+    en: {
+      brand:'UNL',
+      nav_features:'Features', nav_video:'Presentation', nav_download:'Download editor',
+      eyebrow:'UNL · v1.0',
+      hero_title_1:'UNL', hero_title_2:'the language of the future',
+      hero_sub:'One language for frontend, backend, AI, and apps — simple, fast syntax.',
+      cta_download:'Download editor', cta_video:'Watch the demo',
+      feat_kicker:'Why UNL', feat_title:'Built to run everywhere', feat_sub:'Four core ideas shape the language and the editor.',
+      feat1_title:'Simple syntax', feat1_desc:'Few rules, near-natural reading, less time between an idea and its first run.',
+      feat2_title:'Native compiling', feat2_desc:'Code turns into a native executable for each platform, no extra runtime layers.',
+      feat3_title:'Cross-platform', feat3_desc:'One project exports to Android, Windows, Linux and iOS from the same files.',
+      feat4_title:'Open source', feat4_desc:'The language and the editor are open to the community, with an extensible package registry.',
+      video_kicker:'Watch', video_title:'A quick look at UNL', video_sub:'A short tour of the idea and the editor before you download.',
+      dl_kicker:'Download', dl_title:'Get the UNL editor for your device',
+      dl_sub:'Pick your platform. The buttons are wired and ready — see the comment at the top of the code for where to place your files.',
+      dl_win:'Windows', dl_android:'Android', dl_linux:'Linux', dl_ios:'iOS', dl_btn:'Download',
+      dl_hint:'Note: these are real, clickable buttons, but the files don\u2019t exist yet — add them inside a "downloads" folder next to index.html.',
+      footer_text:'UNL — a programming language built by Khalf Ibrahim Khalil, a solo project made at age 14.',
+
+      nav_domains:'Domains', nav_examples:'Code examples', nav_compiler:'Compiler architecture',
+      hero_credit:'A solo project by Khalf Ibrahim Khalil, age 14 — built over 3 months',
+
+      bio_role:'Language creator · Solo project',
+      stat_solo:'developer', stat_age:'years old', stat_months:'months of work', stat_modules:'modules',
+      about_kicker:'The story', about_title:'Why one language for everything?',
+      about_sub:'Instead of learning a language per domain, you write everything the same way, and reach each domain through a namespace starting with un.',
+
+      nav_book:'Book',
+      book_kicker:'Language reference', book_title:'The UNL book', book_sub:'A guide to the syntax and every namespace, readable here or downloadable.',
+      book_note:'Place the book file named unl-book.pdf inside a "book" folder next to index.html.',
+      book_download:'Download the book', book_open:'Open in a new tab',
+
+      dom_kicker:'Where it\u2019s used', dom_title:'A namespace for every domain',
+      dom_sub:'Every domain in UNL gets its own namespace, called through the un. prefix.',
+
+      syn_kicker:'Core rules', syn_title:'A light syntax, built to be read',
+      syn_sub:'The basics of the language before the examples.',
+
+      ex_kicker:'Try the language', ex_title:'Real examples of UNL code',
+      ex_sub:'From simple printing to AI, cybersecurity, and IoT.',
+
+      comp_kicker:'Under the hood', comp_title:'From interpreter to a real compiler',
+      comp_sub:'Today UNL runs closer to an interpreter. The roadmap points toward a full compiler pipeline.',
+      comp_now_t:'Current state', comp_now_d:'Interpreter — executes code directly, line by line',
+      comp_next_t:'Next milestone', comp_next_d:'A real compiler through LLVM down to machine code',
+      mode1_t:'Console mode', mode1_d:'Direct text execution in the terminal, suited for scripts, servers, AI, and cybersecurity.',
+      mode2_t:'Graphical mode (GUI)', mode2_d:'Through the un.gui namespace, a real window interface is built, similar in spirit to how HTML renders a page.'
+    }
+  };
+
+  let lang = 'ar';
+  function applyLang(){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if(dict[lang][key]) el.textContent = dict[lang][key];
+    });
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.body.classList.toggle('lang-en', lang === 'en');
+    langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+  }
+  langToggle.addEventListener('click', function(){
+    lang = lang === 'ar' ? 'en' : 'ar';
+    applyLang();
+  });
+  applyLang();
+
+  // ---- helper: bilingual inline span ----
+  function bi(ar, en){
+    return '<span class="i18n-ar">'+ar+'</span><span class="i18n-en">'+en+'</span>';
+  }
+
+  // ---- helper: lightweight UNL syntax highlighter ----
+  function hl(code){
+    const escaped = escapeHtml(code);
+    return escaped.replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|"[^"]*"|'[^']*'|`[^`]*`|\b(?:func|return|if|elif|else|for|in|while|break|true|false|async|await|try|catch|un\.\w+)\b)/g, function(m){
+      if(m.startsWith('//') || m.startsWith('/*')) return '<span class="cm">'+m+'</span>';
+      if(m[0]==='"' || m[0]==="'" || m[0]==='`') return '<span class="str">'+m+'</span>';
+      if(m.startsWith('un.')) return '<span class="fn">'+m+'</span>';
+      return '<span class="kw">'+m+'</span>';
+    });
+  }
+
+  // ---- characteristics chips ----
+  const chips = [
+    {ar:'لغة خفيفة', en:'Lightweight'},
+    {ar:'سهلة القراءة', en:'Easy to read'},
+    {ar:'غير حساسة لحالة الحرف الأول', en:'Not case-sensitive on the first letter'},
+    {ar:'كل برنامج ينتهي بـ unteck run.u(bg)', en:'Every program ends with unteck run.u(bg)'}
+  ];
+  document.getElementById('chipRow').innerHTML = chips.map(function(c){
+    return '<span class="chip"><span class="dot2"></span>'+bi(c.ar,c.en)+'</span>';
+  }).join('');
+
+  // ---- domains grid (11 real modules from the spec) ----
+  const domains = [
+    {ns:'un.web', ar:'الواجهات الأمامية', en:'Frontend', ard:'بناء واجهات المستخدم وصفحات الويب.', end:'Building user interfaces and web pages.'},
+    {ns:'un.back', ar:'الخوادم والأنظمة', en:'Backend & systems', ard:'خوادم، مسارات، قواعد بيانات، وبرمجة قريبة من النظام.', end:'Servers, routes, databases, and low-level programming.'},
+    {ns:'un.apk · un.ios', ar:'تطبيقات الجوال', en:'Mobile apps', ard:'تصدير مباشر إلى APK لأندرويد وحزمة لـ iOS.', end:'Direct export to an Android APK and an iOS package.'},
+    {ns:'un.ai', ar:'الذكاء الاصطناعي', en:'AI & machine learning', ard:'محادثة مع نماذج الذكاء الاصطناعي والتعلّم من بيانات.', end:'Talking to AI models and learning from data.'},
+    {ns:'un.cyber', ar:'الأمن السيبراني', en:'Cybersecurity', ard:'OTP، فحص كلمات المرور، Hash، وتحقق من الملفات.', end:'OTP codes, password checks, hashing, file verification.'},
+    {ns:'un.data · un.math', ar:'البيانات والحوسبة', en:'Data & computation', ard:'تحليل بيانات ودوال رياضية جاهزة ضمن نفس اللغة.', end:'Data analysis and built-in math functions in the same language.'},
+    {ns:'un.iot', ar:'إنترنت الأشياء', en:'IoT', ard:'التحكم بالأجهزة وقراءة الحساسات في الزمن الحقيقي.', end:'Controlling devices and reading sensors in real time.'},
+    {ns:'un.gui · un.net', ar:'سطح المكتب والشبكات', en:'Desktop & networking', ard:'نوافذ حقيقية، وطلبات GET/POST، واتصالات WebSocket.', end:'Real windows, GET/POST requests, and WebSocket connections.'}
+  ];
+  document.getElementById('domainGrid').innerHTML = domains.map(function(d, i){
+    return '<div class="card"><div class="card-num mono">'+d.ns+'</div><h3>'+bi(d.ar,d.en)+'</h3><p>'+bi(d.ard,d.end)+'</p></div>';
+  }).join('');
+
+  // ---- syntax basics grid ----
+  const syntaxItems = [
+    {lar:'تعليق سطر واحد', len:'Single-line comment', code:'// هذا تعليق'},
+    {lar:'النصوص', len:'Strings', code:'"نص"   \'نص\'   `نص`'},
+    {lar:'الثوابت الجاهزة', len:'Built-in constants', code:'pi:$:\ne:$:\ntau:$:'},
+    {lar:'نهاية كل برنامج', len:'End of every program', code:'unteck run.u(bg)'}
+  ];
+  document.getElementById('syntaxGrid').innerHTML = syntaxItems.map(function(s){
+    return '<div class="syntax-card"><div class="lbl">'+bi(s.lar,s.len)+'</div><code>'+escapeHtml(s.code)+'</code></div>';
+  }).join('');
+
+  // ---- code examples (tabs) ----
+  const examples = [
+    {
+      lar:'أساسيات', len:'Basics',
+      dar:'أبسط برنامج في UNL: طباعة رسالة ثم إنهاء التنفيذ.',
+      den:'The simplest UNL program: print a message, then end execution.',
+      code:'print("welcome in unl")\n\nunteck run.u(bg)'
+    },
+    {
+      lar:'الدوال والقيم المرجعة', len:'Functions & return values',
+      dar:'الدوال تُعرَّف بـ func وتُرجع قيمة عبر return، وتُستدعى مثل أي دالة عادية.',
+      den:'Functions are defined with func and return a value with return, then called normally.',
+      code:'func area(width,height)={\n    return width*height\n}:\n\nroom = area(10,20)\n\nprint(room)\n\nunteck run.u(bg)'
+    },
+    {
+      lar:'الشروط', len:'Conditionals',
+      dar:'شروط متسلسلة بصياغة if / elif / else، مع دعم العمليات المنطقية && || !.',
+      den:'Chained conditions with if / elif / else, plus logical operators && || !.',
+      code:'if (student_score >= 90) ={\n    print("روعة! التقدير ممتاز")\n}:\nelif (student_score >= 75) ={\n    print("التقدير جيد جداً")\n}:\nelse ={\n    print("لم يتم اجتياز الاختبار")\n}:'
+    },
+    {
+      lar:'الحلقات', len:'Loops',
+      dar:'حلقة for-in للمرور على مجموعة، وحلقة while.t / while.f مع اسم للحلقة.',
+      den:'A for-in loop over a set, and while.t / while.f loops with a named loop.',
+      code:'numbers = <1 2 3 4 5>:\n\nfor item in numbers ={\n    print(item)\n}:\n\nwhile.t ;(loop1)+[\n    print("running")\n]:'
+    },
+    {
+      lar:'الكائنات والمجموعات', len:'Objects & sets',
+      dar:'الكائنات تُبنى بأقواس {} وتُقرأ عبر النقطة، والمجموعات (Sets) بأقواس <>.',
+      den:'Objects are built with {} and read with dot notation; sets use <> brackets.',
+      code:'user = {\n    name = "Ali"\n    age = 20\n    country = "Algeria"\n}:\n\nprint(user.name)\n\nusers = <Ahmed,Ali,Ahmed>:\n\nunteck run.u(bg)'
+    },
+    {
+      lar:'الذكاء الاصطناعي', len:'AI',
+      dar:'وسيط un.ai يتيح الحديث مع أي محرك ذكاء اصطناعي، وضبط النموذج ودرجة الحرارة.',
+      den:'The un.ai namespace talks to any AI engine, with model and temperature settings.',
+      code:'un.ai\n\nai.model = "gpt"\nai.temperature = 0.7\n\nresult = ai.ask("ما عاصمة الجزائر")\n\nprint(result)\n\nunteck run.u(bg)'
+    },
+    {
+      lar:'الأمن السيبراني', len:'Cybersecurity',
+      dar:'وسيط un.cyber يولّد رموز OTP، ويفحص قوة كلمات المرور، ويحسب بصمات Hash.',
+      den:'The un.cyber namespace generates OTP codes, checks password strength, and computes hashes.',
+      code:'un.cyber\n\ncode = security.otp(6)\nprint(code)\n\nresult = security.checkpass("123456")\nprint(result)\n\nhash = crypto.hash("123456")\nprint(hash)\n\nunteck run.u(bg)'
+    }
+  ];
+
+  const exTabsEl = document.getElementById('exTabs');
+  const exPanelsEl = document.getElementById('exPanels');
+  exTabsEl.innerHTML = examples.map(function(ex, i){
+    return '<button class="ex-tab'+(i===0?' active':'')+'" data-idx="'+i+'">'+bi(ex.lar, ex.len)+'</button>';
+  }).join('');
+  exPanelsEl.innerHTML = examples.map(function(ex, i){
+    return '<div class="ex-panel'+(i===0?' active':'')+'" data-idx="'+i+'"><p class="ex-desc">'+bi(ex.dar, ex.den)+'</p><pre>'+hl(ex.code)+'</pre></div>';
+  }).join('');
+  exTabsEl.querySelectorAll('.ex-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      exTabsEl.querySelectorAll('.ex-tab').forEach(t=>t.classList.remove('active'));
+      exPanelsEl.querySelectorAll('.ex-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      exPanelsEl.querySelector('.ex-panel[data-idx="'+tab.getAttribute('data-idx')+'"]').classList.add('active');
+    });
+  });
+
+  // ---- compiler pipeline ----
+  const pipelineSteps = [
+    {n:'01', t:'Lexer', dar:'يحوّل النص الخام إلى رموز (Tokens)', den:'Turns raw text into tokens'},
+    {n:'02', t:'Parser', dar:'يبني شجرة قواعد من الرموز', den:'Builds a grammar tree from the tokens'},
+    {n:'03', t:'AST', dar:'شجرة التركيب المجرد للبرنامج', den:'The program\u2019s abstract syntax tree'},
+    {n:'04', t:'Semantic Analyzer', dar:'يتحقق من الأنواع والمعاني', den:'Checks types and meaning'},
+    {n:'05', t:'IR', dar:'تمثيل وسيط قابل للتحسين', den:'An optimizable intermediate representation'},
+    {n:'06', t:'LLVM', dar:'بنية تحتية لتوليد كود آلة محسّن', den:'Infrastructure for generating optimized machine code'},
+    {n:'07', t:'Machine Code', dar:'كود تنفيذي جاهز لكل منصة', den:'Native executable code for each platform'}
+  ];
+  document.getElementById('pipelineRow').innerHTML = pipelineSteps.map(function(s, i){
+    let html3 = '<div class="pipe-step"><div class="pn">'+s.n+'</div><div class="pt">'+s.t+'</div><div class="pd">'+bi(s.dar,s.den)+'</div></div>';
+    if(i < pipelineSteps.length - 1){
+      html3 += '<div class="pipe-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>';
+    }
+    return html3;
+  }).join('');
+
+  // ---- typing terminal animation ----
+  const termBody = document.getElementById('termBody');
+  const codeLines = [
+    {parts:[{t:'func ',c:'kw'},{t:'area',c:'fn'},{t:'(width,height)={'}]},
+    {parts:[{t:'    '},{t:'return ',c:'kw'},{t:'width*height'}]},
+    {parts:[{t:'}:'}]},
+    {parts:[{t:''}]},
+    {parts:[{t:'room = '},{t:'area',c:'fn'},{t:'(10,20)'}]},
+    {parts:[{t:'print',c:'fn'},{t:'(room)'}]},
+    {parts:[{t:''}]},
+    {parts:[{t:'unteck run.u(bg)',c:'cm'}]}
+  ];
+
+  function renderLine(line, partialLen){
+    let out = '';
+    let remaining = partialLen;
+    for(const p of line.parts){
+      if(remaining <= 0) break;
+      const chunk = p.t.slice(0, remaining);
+      const cls = p.c ? ' class="'+p.c+'"' : '';
+      out += '<span'+cls+'>'+escapeHtml(chunk)+'</span>';
+      remaining -= p.t.length;
+    }
+    return out;
+  }
+  function escapeHtml(s){
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function lineLength(line){
+    return line.parts.reduce((a,p)=>a+p.t.length,0);
+  }
+
+  let li = 0, ci = 0;
+  function tick(){
+    let html2 = '';
+    for(let i=0;i<li;i++){
+      html2 += '<div class="term-line">'+renderLine(codeLines[i], lineLength(codeLines[i]))+'</div>';
+    }
+    const curLen = lineLength(codeLines[li]);
+    html2 += '<div class="term-line">'+renderLine(codeLines[li], ci)+'<span class="caret"></span></div>';
+    termBody.innerHTML = html2;
+
+    if(ci < curLen){
+      ci++;
+      setTimeout(tick, 26);
+    } else if(li < codeLines.length - 1){
+      li++; ci = 0;
+      setTimeout(tick, 220);
+    } else {
+      const out = document.createElement('div');
+      out.className = 'term-out';
+      out.textContent = '→ 200 · un.native · targets: android, windows, linux, ios';
+      termBody.appendChild(out);
+      requestAnimationFrame(()=> out.classList.add('show'));
+      setTimeout(function(){
+        li = 0; ci = 0;
+        tick();
+      }, 2600);
+    }
+  }
+  tick();
+})();
+</script>
 </body>
     </html>
