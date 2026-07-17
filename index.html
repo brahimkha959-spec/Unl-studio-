@@ -494,7 +494,10 @@
         <p data-i18n="book_sub">دليل القواعد والوسطاء، للقراءة هنا أو للتحميل.</p>
       </div>
       <div class="book-card">
-        <iframe class="book-frame" src="unl-book.pdf" title="UNL Book"></iframe>
+        <!-- تم استبدال iframe بـ object مع الحفاظ على نفس الكلاس ونفس المسار -->
+        <object class="book-frame" data="unl-book.pdf" type="application/pdf">
+          <p>متصفحك لا يدعم عرض ملفات PDF مباشرة. يمكنك <a href="unl-book.pdf" download>تحميل الكتاب من هنا</a>.</p>
+        </object>
       </div>
       <div class="cta-row" style="margin-top:16px;">
         <a href="unl-book.pdf" class="btn btn-primary" download data-i18n="book_download">تحميل الكتاب</a>
